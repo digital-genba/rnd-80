@@ -3,6 +3,8 @@ import * as React from 'react';
 import { Editor } from 'slate-react';
 import { Value } from 'slate';
 
+import html from './Serialize';
+
 const initialValue = Value.fromJSON({
   document: {
     nodes: [
@@ -29,16 +31,17 @@ class App extends React.Component {
 
   // Set the initial value when the app is first constructed.
   state = {
-    value: initialValue,
+    value: html.deserialize(initialValue),
   }
 
   // On change, update the app's React state with the new editor value.
   onChange = ({ value }) => {
     this.setState({ value })
   }
-  
+
   // Render the editor.
   render() {
+    console.log(this.props);
     return <Editor value={this.state.value} onChange={this.onChange} />
   }
 }

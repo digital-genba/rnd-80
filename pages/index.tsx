@@ -1,9 +1,13 @@
+import { connect } from 'react-redux';
+
 import TextEditor from '../components/TextEditor';
 
-export default () => {
+const Index = () => {
   return (
     <div>
       <TextEditor />
     </div>
   );
 }
+
+export default connect()(Index);
