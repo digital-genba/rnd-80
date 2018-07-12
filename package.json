@@ -7,8 +7,11 @@
   },
   "dependencies": {
     "@zeit/next-typescript": "^1.1.0",
+    "immutable": "^3.8.2",
     "next": "^6.1.1",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "react-dom": "^16.4.1",
+    "slate": "^0.34.5",
+    "slate-react": "^0.13.2"
   }
 }
