@@ -1,5 +1,7 @@
-import { Editor, EditorState } from 'draft-js';
+import { Editor, EditorState, RichUtils } from 'draft-js';
 import 'draft-js/dist/Draft.css';
+
+import { toggleInlineStyle } from '../utils/textStyles';
 
 class TextEditor extends React.Component {
 
@@ -17,7 +19,7 @@ class TextEditor extends React.Component {
     console.log(this.state);
     return (
       <div>
-        <button onClick={this._onBoldClick}>Bold</button>
+        <button onClick={() => this.onChange(toggleInlineStyle(this.state.editorState, 'BOLD'))}>Bold</button>
         <Editor editorState={this.state.editorState} onChange={this.onChange} />
       </div>
     );
