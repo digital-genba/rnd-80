@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 
 import { makeStore } from '../store/store';
+import '../styles/style.css';
 
 class RichTextApp extends App {
   render() {

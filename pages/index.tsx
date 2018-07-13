@@ -1,17 +1,15 @@
+import { connect } from 'react-redux';
 import TextEditor from '../components/TextEditor';
 import { saveText } from '../store/actions/textActions';
 
-const onSave = (dispatch, text) => (
-  dispatch(saveText({
-    text,
-  }))
-)
+const Index = ({ dispatch, text }) => {
 
-export default (dispatch, text) => {
   console.log(text);
   return (
     <div>
-      <TextEditor onSave={text => onSave(dispatch, text)}/>
+      <TextEditor dispatch={dispatch} />
     </div>
   );
 }
+
+export default connect()(Index);

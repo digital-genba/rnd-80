@@ -1,11 +1,27 @@
 import { DraftailEditor, BLOCK_TYPE, INLINE_STYLE, ENTITY_TYPE } from 'draftail';
+import { convertToRaw } from 'draft-js';
+import { stateToHTML } from 'draft-js-export-html';
+import { saveText } from '../store/actions/textActions';
 
-export default (onSave) => {
+const onSave = (content, dispatch) => {
+  //console.log(convertToRaw(content));
+  //console.log('hi');
+  //const html = stateToHTML(content);
+  //console.log(html);
+  //console.log('hi');
+  dispatch(saveText({
+    text: content,
+  }));
+}
+
+
+const TextEditor = ({ dispatch }) => {
+
   return (
     <DraftailEditor
       editorKey="editor"
       rawContentState={null}
-      onSave={onSave}
+      onSave={content => onSave(content, dispatch)}
       showUndoControl={true}
       showRedoControl={true}
       enableLinkBreak={true}
@@ -16,17 +32,19 @@ export default (onSave) => {
         { type: BLOCK_TYPE.HEADER_FOUR, label: 'H4' },
         { type: BLOCK_TYPE.HEADER_FIVE, label: 'H5' },
         { type: BLOCK_TYPE.HEADER_SIX, label: 'H6' },
+        { type: BLOCK_TYPE.BLOCKQUOTE, label: 'blockquote'},
         { type: BLOCK_TYPE.UNORDERED_LIST_ITEM, label: 'UL' },
         { type: BLOCK_TYPE.ORDERED_LIST_ITEM, label: 'OL' },
-        { type: BLOCK_TYPE.BLOCKQUOTE, label: 'quote'},
       ]}
       inlineStyles={[
         { type: INLINE_STYLE.BOLD, label: 'B' },
         { type: INLINE_STYLE.ITALIC, label: 'I' },
+        { type: INLINE_STYLE.UNDERLINE, label: 'U' },
+        { type: INLINE_STYLE.STRIKETHROUGH, label: 'S' },
         { type: INLINE_STYLE.CODE, label: 'code' },
         { type: INLINE_STYLE.SMALL, label: 'small' },
-        { type: INLINE_STYLE.SUBTEXT, label: 'sub' },
-        { type: INLINE_STYLE.STRIKETHROUGH, label: 'strike' },
+        { type: INLINE_STYLE.SUPERSCRIPT, label: 'super' },
+        { type: INLINE_STYLE.SUBSCRIPT, label: 'sub' },
       ]}
       entityTypes={[
         { type: ENTITY_TYPE.LINK,
@@ -39,3 +57,5 @@ export default (onSave) => {
     />
   );
 }
+
+export default TextEditor;
